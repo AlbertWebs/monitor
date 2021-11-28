@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from www.downnotifier.com/api/v1/doc/metric by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 Nov 2021 08:17:24 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+            <meta charset="UTF-8">
+        <title>DownNotifier.com API</title>
+
+        <link href="../../../includes/css/style.css" rel="stylesheet" media="screen">
+            <link rel="stylesheet" href="../../../bundles/nelmioapidoc/swagger-ui/swagger-ui.css">
+        <link rel="stylesheet" href="../../../bundles/nelmioapidoc/style.css">
+    
+    <style>
+        #swagger-ui.api-platform .info .title {
+            color: #41546C;
+        }
+        #swagger-ui.api-platform .opblock.opblock-get .opblock-summary-method {
+            background-color: #41546C;
+        }
+        header:before {
+            height: 0px;
+        }
+        body {
+            margin-top: 0px;
+        }
+        .title {
+            display: none;
+        }
+        pre.base-url {
+            border: none;
+            background: none;
+            font-family: sans-serif !important;
+        }
+        .swagger-ui .info hgroup.main {
+            margin-bottom: 8px;
+        }
+        .swagger-ui .info .base-url {
+            font-size: 14px;
+            font-weight: bold!important;
+        }
+        #swagger-ui.api-platform .opblock-tag:hover {
+            background-color: rgba(0,0,0,.1);
+            transform: none;
+        }
+        .block .models {
+            display: none;
+        }
+    </style>
+
+                    <script id="swagger-data" type="application/json">{"spec":{"swagger":"2.0","info":{"title":"DownNotifier.com API","description":"","version":""},"host":"api.downnotifier.com","schemes":["https"],"paths":{"/api/v1/metric/log":{"get":{"summary":"Log a metric measurement","description":"","produces":["application/json"],"parameters":[{"name":"apikey","in":"query","required":true,"description":"API key. Can be created at https://www.downnotifier.com/list/account/apikeys","type":"string"},{"name":"key","in":"query","required":true,"description":"Metric key. Unique identifier for your metric. Allowed characters: a-z, 0-9, ., -.\u003Cbr\u003E Uppercase characters will be converted to lowercase. If the metric does not exist it will be created.","type":"string"},{"name":"value","in":"query","required":true,"description":"Value to log. Can be an integer or decimal. Use a . as decimal seperator.","type":"number"},{"name":"type","in":"query","required":false,"description":"Type of the metric when creating a new metric. If the metric key already exists this value is ignored.","type":"string","enum":["value","counter","percentage"]}],"responses":{"200":{"description":"Successful operation","schema":{"$ref":"#/definitions/SuccessResponse"}},"400":{"description":"Error during operation","schema":{"$ref":"#/definitions/ErrorResponse"}},"401":{"description":"Authorization failed","schema":{"$ref":"#/definitions/AuthorizationFailedResponse"}}},"tags":["metrics"]}}},"definitions":{"Monitor":{"description":"Monitor information","properties":{"id":{"description":"Monitor ID","type":"integer"},"created":{"description":"Date/time monitor has been created","example":"2010-01-04 21:34:32","type":"string"},"url":{"description":"URL to be monitored","type":"string"},"downtype":{"description":"What to consider as down:\u003Cbr\u003E * 1 - When the site is offline (default)\u003Cbr\u003E * 2 - When the site does not contain a specific text","type":"integer","enum":[1,2]},"text":{"description":"Specific text to look for at the URL (for downtype = 2)","type":"string"},"confirmed":{"description":"Monitor confirmed by account owner (unconfirmed monitors are inactive)","type":"boolean"},"interval":{"description":"Monitoring interval in minutes","type":"integer"},"timezone":{"description":"Timezone, in the format of: America/New_York. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List for a list","type":"string"},"suggesturl":{"description":"When set, DownNotifier recommends this URL to monitor instead of the current one (for example when the current URL does a redirect)","type":"string"},"ssl":{"description":"SSL monitoring enabled for https URLs","type":"boolean"},"status":{"description":"Status of the monitor:\u003Cbr\u003E * up - URL is up\u003Cbr\u003E * down - URL is down\u003Cbr\u003E * investigation - previous request failed, verifing if URL is down\u003Cbr\u003E * initialize - URL has just been added","type":"string"},"uptimethisyear":{"description":"This year uptime percentage","type":"string"},"betterthan":{"description":"Better than percentage","type":"string"}},"type":"object"},"SuccessResponse":{"description":"Success response","properties":{"status":{"description":"Status code, ok for a successful operation","example":"ok","type":"string"}},"type":"object"},"AuthorizationFailedResponse":{"description":"Authorization failed response","properties":{"status":{"description":"Status code","example":"error","type":"string"},"errors":{"description":"Error messages","items":{"example":"Authorization failed","type":"string"},"type":"array"}},"type":"object"},"ErrorResponse":{"description":"Error response","properties":{"status":{"description":"Status code","example":"error","type":"string"},"errors":{"description":"Errors caused by the operation","items":{"example":"Invalid API key","type":"string"},"type":"array"}},"type":"object"},"Downtime":{"description":"Downtime information","properties":{"id":{"description":"Unique ID of the downtime","example":1234567,"type":"integer"},"starttime":{"description":"Date/time of downtime start. In the monitor timezone","example":"2020-12-01 12:23:32","type":"datetime"},"endtime":{"description":"Date/time of downtime end. In the monitor timezone. Empty if the downtime if the website is still down","example":"2020-12-01 12:23:32","type":"datetime"},"url":{"description":"URL monitored during the downtime. This will be the same as your monitor URL, unless you changed the monitor URL","example":"https://www.mydomain.com","type":"string"},"errormessage":{"description":"Reason of the failure","example":"Connection timed out after 25 seconds.","type":"string"},"comment":{"description":"User comment, when added in the DownNotifier admin menu.","example":"","type":"string"},"duration":{"description":"Human friendly readable duration of the downtime","example":"1 minute","type":"string"}},"type":"object"},"MonitorsResponse":{"description":"List of monitors","properties":{"status":{"description":"Status code, ok for a successful operation","example":"ok","type":"string"},"monitors":{"description":"List of monitor","items":{"$ref":"#/definitions/Monitor"},"type":"array"}},"type":"object"},"MonitorResponse":{"description":"Details of a monitor","properties":{"status":{"description":"Status code, ok for a successful operation","example":"ok","type":"string"},"monitor":{"$ref":"#/definitions/Monitor"},"downtimes":{"description":"List of downtimes","items":{"$ref":"#/definitions/Downtime"},"type":"array"}},"type":"object"}}}}</script>
+    </head>
+<body>
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0">
+            <defs>
+                <symbol viewBox="0 0 20 20" id="unlocked">
+                    <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z"></path>
+                </symbol>
+                <symbol viewBox="0 0 20 20" id="locked">
+                    <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z"></path>
+                </symbol>
+                <symbol viewBox="0 0 20 20" id="close">
+                    <path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z"></path>
+                </symbol>
+                <symbol viewBox="0 0 20 20" id="large-arrow">
+                    <path d="M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z"></path>
+                </symbol>
+                <symbol viewBox="0 0 20 20" id="large-arrow-down">
+                    <path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"></path>
+                </symbol>
+                <symbol viewBox="0 0 24 24" id="jump-to">
+                    <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"></path>
+                </symbol>
+                <symbol viewBox="0 0 24 24" id="expand">
+                    <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"></path>
+                </symbol>
+            </defs>
+        </svg>
+        <header>
+            <div class="container">
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="header-left clearfix">
+                    <div id="logo2" class="logo2">
+                        <a href="../../../index.html"><img id="logo_img" src="../../../images/logo2.svg" alt="DownNotifier.com"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+
+                <div class="header-right clearfix">
+
+                    <div class="main-navigation  animated with-dropdown-buttons">
+
+                        <nav class="navbar navbar-default">
+                            <div class="container-fluid">
+
+                                <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                    <ul class="nav navbar-nav ">
+                                        <li>
+                                            <a href="monitor.html">Monitoring API v1</a>
+                                        </li>
+
+                                        <li>
+                                            <a href="public.html">Public API v1</a>
+                                        </li>
+
+                                        <li class="active">
+                                            <a href="metric.html">Metric API v1</a>
+                                        </li>
+                                    </ul>
+                                    <!-- header buttons -->
+                                    <div class="header-dropdown-buttons">
+                                    </div>
+                                    <!-- header buttons end-->
+
+                                </div>
+
+                            </div>
+                        </nav>
+                        <!-- navbar end -->
+
+                    </div>
+                    <!-- main-navigation end -->
+                </div>
+                <!-- header-right end -->
+
+            </div>
+        </div>
+    </div>
+    </header>
+
+                        <div id="swagger-ui" class="api-platform"></div>
+    
+    
+
+            <script src="../../../bundles/nelmioapidoc/swagger-ui/swagger-ui-bundle.js"></script>
+        <script src="../../../bundles/nelmioapidoc/swagger-ui/swagger-ui-standalone-preset.js"></script>
+    
+            <script src="../../../bundles/nelmioapidoc/init-swagger-ui.js"></script>
+    </body>
+
+<!-- Mirrored from www.downnotifier.com/api/v1/doc/metric by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 Nov 2021 08:17:24 GMT -->
+</html>

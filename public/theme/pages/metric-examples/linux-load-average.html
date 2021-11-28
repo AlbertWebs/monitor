@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.downnotifier.com/pages/metric-examples/linux-load-average by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 Nov 2021 08:17:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+            <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" href="../../assets/stylesheets/main6c83.css?45">
+        <title>Monitor Linux load average - DownNotifier.com</title>
+    
+
+    <link rel="stylesheet" href="../../assets/stylesheets/geshi.css">
+    </head>
+
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="../../index.html">
+            <img src="../../assets/images/elements/logo-navbar.svg" alt="" class="w-100">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Web monitoring</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../ssl-certificate-monitoring.html">SSL certificate monitoring</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../../metrics.html">Metrics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../list/index.html">
+                            Log in
+                            <i class="fas fa-sign-in-alt nav-icon"></i>
+                        </a>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="main">
+
+    
+        <section class="section p-0">
+        <div class="container">
+                        <div class="row">
+                <div class="col-lg-3 col-md-4 col--bordered py-4 py-md-5 pr-md-0">
+                        <div class="sticky-top-md-up">
+    <nav class="nav flex-column mb-4 mb-md-5">
+        
+                                <b class="nav-link">Server monitoring</b>
+            
+            <a class="nav-link nav-link--bullet" href="linux-disk-space.html">Linux disk space</a>
+
+            
+        
+            
+            <a class="nav-link nav-link--bullet active" href="linux-load-average.html">Linux load average</a>
+
+            
+        
+                                <b class="nav-link">Sales</b>
+            
+            <a class="nav-link nav-link--bullet" href="sales-order-count.html">Sales order count</a>
+
+            
+        
+                                <b class="nav-link">Marketing</b>
+            
+            <a class="nav-link nav-link--bullet" href="signups.html">Signups</a>
+
+            
+            </nav>
+
+    <nav class="nav flex-column">
+        <a class="nav-link" href="add.html"><i class="fas fa-plus-square fa-2x mr-2 text-blue"></i> Add example</a>
+        <a class="nav-link" href="request.html"><i class="fas fa-plus-square fa-2x mr-2 text-blue"></i> Request example</a>
+    </nav>
+</div>                </div>
+
+                <div class="col-lg-9 col-md-8 py-4 py-md-5 pl-md-5">
+                    
+                    
+                    
+                    
+                    
+                    <h1 class="mb-5">Monitor Linux load average</h1>
+
+            <p>The Linux (or other Unix like systems) load average tells about the busyness of the server. More&nbsp;specifically it is the average number or running processes.</p>
+<p>The load average is reported for the last minute, the last 5 minutes and the last 15 minutes.</p>
+<h5>Monitor&nbsp;Linux load average</h5>
+<p>You can use DownNotifier to monitor the load average. The code example below reports the load average to DownNotitier every 15 minutes. After putting the script on your server, setting the correct API key and adding it to the cron DownNotifier sends an e-mail about the newly added metric. Use the link in the e-mail or log in to your DownNotifier.com account to manage the metric and add alerts.</p>
+<h5>Get an alert with high load&nbsp;average</h5>
+<p>We recommend setting a &ldquo;Value is above&rdquo; alert and the set a longer period, to avoid alerts with a very&nbsp;temporary overload. You can for example choose for:</p>
+<ul>
+<li>Value is above 1 (multiply it by your number of cores) in the last 15 minutes</li>
+<li>Value is above 0.5&nbsp;(multiply it by your number of cores) in the last 8 hours</li>
+</ul>
+<h5>When is the load average too high?</h5>
+<p>In general, a lot more than 1 per core means the system is overloaded. So for example a single core system should have a load under 1, an 8 core system should have a load under 8. Use the &ldquo;nproc&rdquo;&nbsp;command to see the number of cores.</p>
+<p>When the load is too high the bottleneck can be the CPU, but it is also possible the disk or networking is the bottleneck. Use tools like &ldquo;top&rdquo; to investigate this.</p>
+<h5>Get an alert when the server does not report</h5>
+<p>We recommend setting an (additional) alert to get alerted when the server does not report for a longer period (for example 1 hour). This way you get noticed when there is a problem with the script or the cron daemon. You can use a &ldquo;Not updated / inactive&rdquo; alert for this.</p>
+    
+<ul class="nav nav-tabs align-items-end mt-5">
+                                            <li class="nav-item ml-3 ml-md-4">
+            <a class="nav-link active" data-toggle="tab" href="#code75">Cron / Command line</a>
+        </li>
+                    <li class="nav-item ml-3 ml-md-4">
+            <a class="nav-link" data-toggle="tab" href="#code1">PHP</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#add"><i class="far fa-plus-square text-blue"></i> Add Language</a>
+    </li>
+</ul>
+
+<div class="nav-tabs-panel panel text-muted">
+    <div class="tab-content">
+
+                <div class="tab-pane fade show geshifilter active" id="code75" onclick="logView('Cron / Command line');">
+            <pre class="bash"><span class="co0"># Replace [apikey] by your API key and [metrickey] by the ID you want to use for this metric (for example the servername)</span>
+<span class="co0">#</span>
+<span class="co0"># Put the script in your crontab (crontab -e) like:</span>
+<span class="co0"># 3,18,33,48 * * * * uptime | awk -F'[a-z]:' '{ print $2 }' | cut -d, -f3 | sed 's/ //g' | awk  '{system (&quot;curl \&quot;https://api.downnotifier.com/api/v1/metric/log?apikey=[apikey]&amp;key=[metrickey]&amp;type=value&amp;value=&quot;$1&quot;\&quot;&quot;)}'</span>
+&nbsp;
+<span class="kw2">uptime</span> <span class="sy0">|</span> <span class="kw2">awk</span> <span class="re5">-F</span><span class="st_h">'[a-z]:'</span> <span class="st_h">'{ print $2 }'</span> <span class="sy0">|</span> <span class="kw2">cut</span> -d, <span class="re5">-f3</span> <span class="sy0">|</span> <span class="kw2">sed</span> <span class="st_h">'s/ //g'</span> <span class="sy0">|</span> <span class="kw2">awk</span>  <span class="st_h">'{system (&quot;curl \&quot;https://api.downnotifier.com/api/v1/metric/log?apikey=[apikey]&amp;key=[metrickey]&amp;type=value&amp;value=&quot;$1&quot;\&quot;&quot;)}'</span>
+&nbsp;</pre>
+        </div>
+                <div class="tab-pane fade show geshifilter" id="code1" onclick="logView('PHP');">
+            <pre class="php"><span class="kw2">&lt;?php</span>
+&nbsp;
+<span class="coMULTI">/*
+&nbsp;
+Set your API key and verify the other settings.
+&nbsp;
+Put this script in your crontab (crontab -e) like:
+2,17,32,47 * * * * /usr/bin/php /path/to/monitor-load.php
+&nbsp;
+*/</span>
+&nbsp;
+<span class="re0">$apiKey</span> <span class="sy0">=</span> <span class="st_h">'your-api-key'</span><span class="sy0">;</span>
+<span class="re0">$endpoint</span> <span class="sy0">=</span> <span class="st_h">'https://api.downnotifier.com/api/v1/metric/log'</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$load</span> <span class="sy0">=</span> sys_getloadavg<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="re0">$load</span> <span class="sy0">=</span> <span class="re0">$load</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$hostname</span> <span class="sy0">=</span> gethostname<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$key</span> <span class="sy0">=</span> <span class="re0">$hostname</span><span class="sy0">.</span><span class="st_h">'-loadaverage'</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$parameters</span> <span class="sy0">=</span> <span class="br0">&#91;</span>
+    <span class="st_h">'apikey'</span> <span class="sy0">=&gt;</span> <span class="re0">$apiKey</span><span class="sy0">,</span>
+    <span class="st_h">'key'</span>    <span class="sy0">=&gt;</span> <span class="re0">$key</span><span class="sy0">,</span>
+    <span class="st_h">'type'</span> <span class="sy0">=&gt;</span> <span class="st_h">'value'</span><span class="sy0">,</span>
+    <span class="st_h">'value'</span>  <span class="sy0">=&gt;</span> <span class="re0">$load</span><span class="sy0">,</span>
+<span class="br0">&#93;</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$url</span> <span class="sy0">=</span> <span class="re0">$endpoint</span><span class="sy0">.</span><span class="st_h">'?'</span><span class="sy0">.</span><a href="http://www.php.net/http_build_query"><span class="kw3">http_build_query</span></a><span class="br0">&#40;</span><span class="re0">$parameters</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<a href="http://www.php.net/file_get_contents"><span class="kw3">file_get_contents</span></a><span class="br0">&#40;</span><span class="re0">$url</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;</pre>
+        </div>
+                <!-- tab-pane -->
+
+        <div class="tab-pane fade" id="add">
+            
+    <form class="" action="#" method="post">
+        <input type="hidden" name="action" value="go">
+                    <input type="hidden" name="example_id" value="1">
+                <input type="hidden" name="rctoken" id="rctoken" value="">
+
+        
+        <div class="form-group">
+            <div class="form-row align-items-center">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="language" class="mb-lg-0">Programming language:</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="text" name="language" class="form-control" id="language" value="">
+                </div>
+            </div>
+        </div>
+
+                <div class="form-group">
+            <div class="form-row">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="field-code" class="mb-lg-0">Code:</label>
+                </div>
+                <div class="col-lg-9">
+                    <textarea name="code" id="field-code" cols="" rows="" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        
+                <div class="form-group">
+            <div class="form-row align-items-center">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="label-submitter" class="mb-lg-0">Your name:</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="submitter" name="submitter" class="form-control" id="label-submitter" value="">
+                </div>
+                <div class="col-lg-4">
+                    <p class="mt-3 mt-lg-0 text-black">
+                        <span class="text-blue">*</span> if you want to be mentioned as submitter
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="form-row align-items-center">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="label-email" class="mb-lg-0">Your email address:</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="email" name="email" class="form-control" id="label-email" value="">
+                </div>
+                <div class="col-lg-4">
+                    <p class="mt-3 mt-lg-0 text-black">
+                                                    <span class="text-blue">*</span> optional – you can get a <b>Amazon gift card</b> for a great example</p>
+                                        </div>
+            </div>
+        </div>
+
+        <script src="../../../www.google.com/recaptcha/apib016.js?render=6LeNP5YUAAAAAFYT3S8o2HFqSrhpmag6L-hDGEdK"></script>
+        <script>
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LeNP5YUAAAAAFYT3S8o2HFqSrhpmag6L-hDGEdK', {action: 'form'}).then(function(token) {
+                    document.getElementById('rctoken').value = token;
+                });
+            });
+        </script>
+
+        <div class="form-row align-items-center">
+            <div class="col-lg-9 offset-lg-3">
+                <button type="submit" class="btn btn-primary">SUBMIT EXAMPLE</button>
+            </div>
+        </div>
+    </form>
+
+
+        </div>
+        <!-- tab-pane -->
+    </div>
+</div>
+
+                </div>
+            </div>
+                    </div>
+    </section>
+    </main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row row--flex">
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <a href="../../index.html" class="footer__logo mb-0 mb-md-3">
+                    <img src="../../assets/images/elements/logo-footer.svg" alt="DownNotifier logo" class="w-100">
+                </a>
+                <p class="d-none d-lg-block mt-auto">© DownNotifier.com 2011-2021</p>
+            </div>
+
+            <div class="col-lg-8 offset-lg-1">
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h5>Legal</h5>
+                        <nav class="footer__nav">
+                            <a class="footer__nav__link" href="../terms.html">Terms of Service</a>
+                            <a class="footer__nav__link" href="../privacy.html">Privacy Policy</a>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h5>More Information</h5>
+                        <nav class="footer__nav">
+                            <a class="footer__nav__link" href="../../plans.html">Plans</a>
+                            <a class="footer__nav__link" href="../monitoring-questions.html">Monitoring Questions</a>
+                            <a class="footer__nav__link" href="../account-questions.html">Account Questions</a>
+                            <a class="footer__nav__link" href="../../free-sms-monitoring/index.html">Free SMS Credits</a>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <nav class="footer__nav">
+                            <a class="footer__nav__link" href="../../contact/index.html">Support</a>
+                            <a class="footer__nav__link" href="../../contact/index.html">Contact Us</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <p class="d-lg-none mt-4">© DownNotifier.com 2011-2021</p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="../../assets/javascript/scripts.js"></script>
+
+
+    <script>
+        function logView(language) {
+            $.get( "/pages/metric-examples/log", { example_id: "1", language: language } );
+        }
+        logView('');
+    </script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28988917-1']);
+    _gaq.push(['_setCustomVar', 1, 'abgroup', '2', 2]);
+        _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</body>
+
+<!-- Mirrored from www.downnotifier.com/pages/metric-examples/linux-load-average by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 Nov 2021 08:17:31 GMT -->
+</html>

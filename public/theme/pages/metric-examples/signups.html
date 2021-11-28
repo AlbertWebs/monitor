@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from www.downnotifier.com/pages/metric-examples/signups by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 Nov 2021 08:17:31 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+            <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="format-detection" content="telephone=no">
+        <link rel="stylesheet" href="../../assets/stylesheets/main6c83.css?45">
+        <title>Monitor Signups - DownNotifier.com</title>
+    
+
+    <link rel="stylesheet" href="../../assets/stylesheets/geshi.css">
+    </head>
+
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="../../index.html">
+            <img src="../../assets/images/elements/logo-navbar.svg" alt="" class="w-100">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.html">Web monitoring</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../ssl-certificate-monitoring.html">SSL certificate monitoring</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../../metrics.html">Metrics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../list/index.html">
+                            Log in
+                            <i class="fas fa-sign-in-alt nav-icon"></i>
+                        </a>
+                    </li>
+                            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="main">
+
+    
+        <section class="section p-0">
+        <div class="container">
+                        <div class="row">
+                <div class="col-lg-3 col-md-4 col--bordered py-4 py-md-5 pr-md-0">
+                        <div class="sticky-top-md-up">
+    <nav class="nav flex-column mb-4 mb-md-5">
+        
+                                <b class="nav-link">Server monitoring</b>
+            
+            <a class="nav-link nav-link--bullet" href="linux-disk-space.html">Linux disk space</a>
+
+            
+        
+            
+            <a class="nav-link nav-link--bullet" href="linux-load-average.html">Linux load average</a>
+
+            
+        
+                                <b class="nav-link">Sales</b>
+            
+            <a class="nav-link nav-link--bullet" href="sales-order-count.html">Sales order count</a>
+
+            
+        
+                                <b class="nav-link">Marketing</b>
+            
+            <a class="nav-link nav-link--bullet active" href="signups.html">Signups</a>
+
+            
+            </nav>
+
+    <nav class="nav flex-column">
+        <a class="nav-link" href="add.html"><i class="fas fa-plus-square fa-2x mr-2 text-blue"></i> Add example</a>
+        <a class="nav-link" href="request.html"><i class="fas fa-plus-square fa-2x mr-2 text-blue"></i> Request example</a>
+    </nav>
+</div>                </div>
+
+                <div class="col-lg-9 col-md-8 py-4 py-md-5 pl-md-5">
+                    
+                    
+                    
+                    
+                    
+                    <h1 class="mb-5">Monitor Signups</h1>
+
+            <p>Is your number of signups stable? For example signups for new accounts, a newsletter or a trail. Receive an alerts when your number of signups decreases or increases.</p>
+    
+<ul class="nav nav-tabs align-items-end mt-5">
+                                            <li class="nav-item ml-3 ml-md-4">
+            <a class="nav-link active" data-toggle="tab" href="#code19">JavaScript</a>
+        </li>
+                    <li class="nav-item ml-3 ml-md-4">
+            <a class="nav-link" data-toggle="tab" href="#code16">PHP</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#add"><i class="far fa-plus-square text-blue"></i> Add Language</a>
+    </li>
+</ul>
+
+<div class="nav-tabs-panel panel text-muted">
+    <div class="tab-content">
+
+                <div class="tab-pane fade show geshifilter active" id="code19" onclick="logView('JavaScript');">
+            <pre class="javascript"><span class="sy0">&lt;</span>script<span class="sy0">&gt;</span>
+<span class="coMULTI">/*
+This example requires jQuery.
+&nbsp;
+Put this code in the HTML of the signup success page.
+&nbsp;
+Warning: JavaScript is executed client side so your API key is exposed to users.
+Make sure to restrict the API key to the defined metric key, otherwise users
+will be able to create new metrics.
+*/</span>
+<span class="br0">&#40;</span><span class="kw1">function</span> <span class="br0">&#40;</span>$<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+<span class="kw1">var</span> apiKey <span class="sy0">=</span> <span class="st0">'your-api-key'</span><span class="sy0">;</span>
+<span class="kw1">var</span> endpoint <span class="sy0">=</span> <span class="st0">'https://api.downnotifier.com/api/v1/metric/log'</span><span class="sy0">;</span>
+<span class="kw1">var</span> key <span class="sy0">=</span> <span class="st0">'signup'</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">var</span> data <span class="sy0">=</span> <span class="br0">&#123;</span>
+    <span class="st0">'apikey'</span><span class="sy0">:</span> apiKey<span class="sy0">,</span>
+    <span class="st0">'key'</span><span class="sy0">:</span> key<span class="sy0">,</span>
+    <span class="st0">'value'</span><span class="sy0">:</span> <span class="nu0">1</span><span class="sy0">,</span>
+    <span class="st0">'type'</span><span class="sy0">:</span> <span class="st0">'counter'</span>
+<span class="br0">&#125;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//log order</span>
+$.<span class="kw1">get</span><span class="br0">&#40;</span>endpoint<span class="sy0">,</span> data<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span><span class="br0">&#41;</span><span class="br0">&#40;</span>jQuery<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="sy0">&lt;/</span>script<span class="sy0">&gt;</span></pre>
+        </div>
+                <div class="tab-pane fade show geshifilter" id="code16" onclick="logView('PHP');">
+            <pre class="php"><span class="kw2">&lt;?php</span>
+<span class="re0">$apiKey</span> <span class="sy0">=</span> <span class="st_h">'your-api-key'</span><span class="sy0">;</span>
+<span class="re0">$endpoint</span> <span class="sy0">=</span> <span class="st_h">'https://api.downnotifier.com/api/v1/metric/log'</span><span class="sy0">;</span>
+<span class="re0">$key</span> <span class="sy0">=</span> <span class="st_h">'signup'</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$parameters</span> <span class="sy0">=</span> <span class="br0">&#91;</span>
+    <span class="st_h">'apikey'</span> <span class="sy0">=&gt;</span> <span class="re0">$apiKey</span><span class="sy0">,</span>
+    <span class="st_h">'key'</span>    <span class="sy0">=&gt;</span> <span class="re0">$key</span><span class="sy0">,</span>
+    <span class="st_h">'value'</span>  <span class="sy0">=&gt;</span> <span class="nu0">1</span><span class="sy0">,</span>
+    <span class="st_h">'type'</span>   <span class="sy0">=&gt;</span> <span class="st_h">'counter'</span><span class="sy0">,</span>
+<span class="br0">&#93;</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$url</span> <span class="sy0">=</span> <span class="re0">$endpoint</span><span class="sy0">.</span><span class="st_h">'?'</span><span class="sy0">.</span><a href="http://www.php.net/http_build_query"><span class="kw3">http_build_query</span></a><span class="br0">&#40;</span><span class="re0">$parameters</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//log order</span>
+<a href="http://www.php.net/file_get_contents"><span class="kw3">file_get_contents</span></a><span class="br0">&#40;</span><span class="re0">$url</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+&nbsp;</pre>
+        </div>
+                <!-- tab-pane -->
+
+        <div class="tab-pane fade" id="add">
+            
+    <form class="" action="#" method="post">
+        <input type="hidden" name="action" value="go">
+                    <input type="hidden" name="example_id" value="13">
+                <input type="hidden" name="rctoken" id="rctoken" value="">
+
+        
+        <div class="form-group">
+            <div class="form-row align-items-center">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="language" class="mb-lg-0">Programming language:</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="text" name="language" class="form-control" id="language" value="">
+                </div>
+            </div>
+        </div>
+
+                <div class="form-group">
+            <div class="form-row">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="field-code" class="mb-lg-0">Code:</label>
+                </div>
+                <div class="col-lg-9">
+                    <textarea name="code" id="field-code" cols="" rows="" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        
+                <div class="form-group">
+            <div class="form-row align-items-center">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="label-submitter" class="mb-lg-0">Your name:</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="submitter" name="submitter" class="form-control" id="label-submitter" value="">
+                </div>
+                <div class="col-lg-4">
+                    <p class="mt-3 mt-lg-0 text-black">
+                        <span class="text-blue">*</span> if you want to be mentioned as submitter
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="form-row align-items-center">
+                <div class="col-lg-3 text-lg-right">
+                    <label for="label-email" class="mb-lg-0">Your email address:</label>
+                </div>
+                <div class="col-lg-5">
+                    <input type="email" name="email" class="form-control" id="label-email" value="">
+                </div>
+                <div class="col-lg-4">
+                    <p class="mt-3 mt-lg-0 text-black">
+                                                    <span class="text-blue">*</span> optional – you can get a <b>Amazon gift card</b> for a great example</p>
+                                        </div>
+            </div>
+        </div>
+
+        <script src="../../../www.google.com/recaptcha/apib016.js?render=6LeNP5YUAAAAAFYT3S8o2HFqSrhpmag6L-hDGEdK"></script>
+        <script>
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6LeNP5YUAAAAAFYT3S8o2HFqSrhpmag6L-hDGEdK', {action: 'form'}).then(function(token) {
+                    document.getElementById('rctoken').value = token;
+                });
+            });
+        </script>
+
+        <div class="form-row align-items-center">
+            <div class="col-lg-9 offset-lg-3">
+                <button type="submit" class="btn btn-primary">SUBMIT EXAMPLE</button>
+            </div>
+        </div>
+    </form>
+
+
+        </div>
+        <!-- tab-pane -->
+    </div>
+</div>
+
+                </div>
+            </div>
+                    </div>
+    </section>
+    </main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row row--flex">
+            <div class="col-lg-3 mb-4 mb-lg-0">
+                <a href="../../index.html" class="footer__logo mb-0 mb-md-3">
+                    <img src="../../assets/images/elements/logo-footer.svg" alt="DownNotifier logo" class="w-100">
+                </a>
+                <p class="d-none d-lg-block mt-auto">© DownNotifier.com 2011-2021</p>
+            </div>
+
+            <div class="col-lg-8 offset-lg-1">
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h5>Legal</h5>
+                        <nav class="footer__nav">
+                            <a class="footer__nav__link" href="../terms.html">Terms of Service</a>
+                            <a class="footer__nav__link" href="../privacy.html">Privacy Policy</a>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h5>More Information</h5>
+                        <nav class="footer__nav">
+                            <a class="footer__nav__link" href="../../plans.html">Plans</a>
+                            <a class="footer__nav__link" href="../monitoring-questions.html">Monitoring Questions</a>
+                            <a class="footer__nav__link" href="../account-questions.html">Account Questions</a>
+                            <a class="footer__nav__link" href="../../free-sms-monitoring/index.html">Free SMS Credits</a>
+                        </nav>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h5>Contact Us</h5>
+                        <nav class="footer__nav">
+                            <a class="footer__nav__link" href="../../contact/index.html">Support</a>
+                            <a class="footer__nav__link" href="../../contact/index.html">Contact Us</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <p class="d-lg-none mt-4">© DownNotifier.com 2011-2021</p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script src="../../assets/javascript/scripts.js"></script>
+
+
+    <script>
+        function logView(language) {
+            $.get( "/pages/metric-examples/log", { example_id: "13", language: language } );
+        }
+        logView('');
+    </script>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-28988917-1']);
+    _gaq.push(['_setCustomVar', 1, 'abgroup', '2', 2]);
+        _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+</body>
+
+<!-- Mirrored from www.downnotifier.com/pages/metric-examples/signups by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 27 Nov 2021 08:17:31 GMT -->
+</html>

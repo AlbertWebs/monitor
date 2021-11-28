@@ -1,0 +1,119 @@
+/* Geshi */
+.geshifilter pre {
+    /* display: block; */
+    /* padding: 9.5px; */
+    padding-top: 18px;
+    padding-bottom: 4px;
+    padding-left: 18px;
+    padding-right: 18px;
+    margin: 0;
+    font-size: 1em;
+    /* line-height: 1.42857143; */
+    color: #ffffff;
+    /* word-break: break-all; */
+    /* word-wrap: break-word; */
+    background-color: #222;
+    border: 1px solid #e6e6e6;
+    border-radius: 6px;
+}
+
+div.bbCodeBlock {
+    background: @pageBackground !important;
+}
+
+/* all            */
+.geshifilter {
+    border: none !important;
+}
+
+/* lines        */
+.geshifilter .li1 {
+    background: @pageBackground !important;
+}
+
+.geshifilter .li2 {
+    background: @pageBackground !important;
+}
+
+/* brackets        */
+.geshifilter .br0 {
+    color: #bfbfbf !important;
+}
+
+
+/* comments        */
+.geshifilter .co0,
+.geshifilter .co1,
+.geshifilter .coMULTI {
+    color: #7a7a75 !important;
+}
+
+/* strings        */
+.geshifilter .st0,
+.geshifilter .st_h {
+    color: #ff4444 !important;
+}
+
+
+/* methods        */
+.geshifilter .me0,
+.geshifilter .me1 {
+    color: #ffffff !important;
+}
+
+.geshifilter .me2 {
+    color: #ffcc66 !important;
+}
+
+
+/* keywords        */
+.geshifilter .kw1 {
+    color: #99ee00 !important;
+}
+
+.geshifilter .kw2 {
+    color: #eeaa22 !important;
+}
+
+.geshifilter .kw3 {
+    color: #dd88ff !important;
+}
+
+.geshifilter .kw4 {
+    color: #ff7744 !important;
+}
+
+/* operators        */
+.geshifilter .sy0 {
+    color: #44ffbb !important;
+}
+
+/* numbers        */
+.geshifilter .nu0 {
+    color: #ff2288 !important;
+}
+
+/* variables        */
+.geshifilter .re0 {
+    color: #88c0ff !important;
+}
+
+.geshifilter .re1 {
+    color: #88c0ff !important;
+}
+
+.geshifilter .re2 {
+    color: #ccddff !important;
+}
+
+.geshifilter .re3 {
+    color: #88c0ff !important;
+}
+
+.geshifilter .re4 {
+    color: #88c0ff !important;
+}
+
+.geshifilter .re5 {
+    color: #ddddff !important;
+}
